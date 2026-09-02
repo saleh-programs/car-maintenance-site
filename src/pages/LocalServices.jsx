@@ -54,9 +54,12 @@ function LocalServices() {
         );
         out center;
       `;
-      const overpassResponse = await fetch('https://overpass-api.de/api/interpreter', {
+      const overpassResponse = await fetch('https://maps.mail.ru/osm/tools/overpass/api/interpreter', {
         method: 'POST',
-        body: overpassQuery,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: "data=" + encodeURIComponent(overpassQuery),
       });
       const overpassData = await overpassResponse.json();
       // Process returned elements into an array of shops
